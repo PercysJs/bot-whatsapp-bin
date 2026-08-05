@@ -1,0 +1,7 @@
+services:
+  - type: web
+    name: bot-whatsapp-bin
+    runtime: node
+    plan: free
+    buildCommand: bash .render-build.sh
+    startCommand: node bot.js

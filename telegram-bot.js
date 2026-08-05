@@ -8,7 +8,7 @@ const bot = new TelegramBot(token, { polling: true });
 console.log('🤖 Bot de Telegram iniciado!');
 
 // ============================================
-// TUS FUNCIONES DE GENERADOR (LAS MISMAS)
+// TUS FUNCIONES ORIGINALES (TAL CUAL)
 // ============================================
 
 function verificarLuhn(numero) {
@@ -61,15 +61,20 @@ function generarCVV() {
   return Math.floor(Math.random() * 900) + 100;
 }
 
-function generarFechaFutura(anioInput, mesInput) {
-  let mesAleatorio = mesInput || Math.floor(Math.random() * 12) + 1;
-  let anioAleatorio = anioInput || (2026 + Math.floor(Math.random() * 5));
+function generarFechaFutura(anioFuturo, mesFuturo) {
+  let mesAleatorio = mesFuturo || Math.floor(Math.random() * 12) + 1;
+  let anioAleatorio = anioFuturo || (2025 + Math.floor(Math.random() * 6));
   return new Date(anioAleatorio, mesAleatorio - 1, 1);
 }
+
+// ============================================
+// FUNCIÓN PRINCIPAL - TAL CUAL TU CÓDIGO
+// ============================================
 
 function generarTarjetas(bin, cantidad, mesInput, anioInput, cvvInput) {
   const resultados = [];
   
+  // EXACTAMENTE IGUAL QUE TU CÓDIGO ORIGINAL
   let binLimpio = bin;
   if (binLimpio.includes('x') || binLimpio.includes('X')) {
     const chars = binLimpio.split('');

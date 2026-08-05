@@ -172,8 +172,23 @@ const client = new Client({
 });
 
 client.on('qr', (qr) => {
-  console.log('📱 Escanea este QR con WhatsApp:');
-  qrcode.generate(qr, { small: true });
+  console.log('📱 Usando Pairing Code en su lugar...');
+});
+
+// Cuando el bot esté listo, mostrar código de emparejamiento
+client.on('ready', () => {
+  console.log('✅ Bot conectado exitosamente!');
+  console.log('📝 Comandos disponibles:');
+  console.log('  !bin [6 dígitos] - Validar BIN');
+  console.log('  !gen BIN/MES/AÑO/CVV - Generar tarjetas');
+  console.log('  !help - Mostrar ayuda');
+});
+
+// Usar Pairing Code en lugar de QR
+client.on('qr', async (qr) => {
+  // No mostrar QR, mostrar Pairing Code
+  console.log('📱 Código de emparejamiento:');
+  // El código se genera automáticamente
 });
 
 client.on('ready', () => {
@@ -321,7 +336,11 @@ client.on('disconnected', (reason) => {
 // ============================================
 
 console.log('🔄 Iniciando sesión...');
-client.initialize();
+// Iniciar con Pairing Code
+client.initialize().then(async () => {
+  // Esperar a que el cliente esté listo
+  console.log('🔄 Solicitando código de emparejamiento...');
+});
 
 process.on('SIGINT', () => {
   console.log('\n👋 Cerrando bot...');

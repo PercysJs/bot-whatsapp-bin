@@ -172,9 +172,12 @@ const client = new Client({
 });
 
 client.on('qr', (qr) => {
-  console.log('📱 Usando Pairing Code en su lugar...');
+  console.log('📱 QR generado. Visita este enlace para escanearlo:');
+  // Generar URL con QR
+  const qrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=400x400&data=${encodeURIComponent(qr)}`;
+  console.log(`🔗 ${qrUrl}`);
+  console.log('📱 Abre ese enlace en tu celular y escanea el QR con WhatsApp');
 });
-
 // Cuando el bot esté listo, mostrar código de emparejamiento
 client.on('ready', () => {
   console.log('✅ Bot conectado exitosamente!');
